@@ -33,6 +33,7 @@ io.on("connection", (socket) => {
 
   // Send message to a room
   socket.on("send_message", ({ roomId, message, user }) => {
+    socket.join(roomId);
     const data = { message, user };
     socket.to(roomId).emit("receive_message", data);
   });
